@@ -3,8 +3,6 @@ import {EventService} from './shared/event.service';
 import {ToastrService} from '../common/toastr.service';
 
 @Component({
-  // tslint:disable-next-line:component-selector
-  selector: 'events-list',
   template: `
     <div>
       <h1>Upcoming Angular Events</h1>
@@ -17,7 +15,7 @@ import {ToastrService} from '../common/toastr.service';
     </div>
   `
 })
-// 3 - Using Template Variables to Interact with Child Component
+
 export class EventsListComponent implements OnInit {
   events: any[];
 
