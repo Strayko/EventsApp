@@ -1,24 +1,25 @@
 import {Injectable} from '@angular/core';
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
+import {IEvent} from './event.model';
 
 @Injectable()
 export class EventService {
-  getEvents() {
-    const subject = new Subject();
+  getEvents(): Observable<IEvent[]> {
+    const subject = new Subject<IEvent[]>();
     setTimeout(() => {subject.next(EVENTS); subject.complete(); }, 100);
     return subject;
   }
 
-  getEvent(id: number) {
+  getEvent(id: number): IEvent {
     return EVENTS.find(event => event.id === id);
   }
 }
 
-const EVENTS = [
+const EVENTS: IEvent[] = [
   {
     id: 1,
     name: 'Angular Connect',
-    date: '9/26/2036',
+    date: new Date('9/26/2036'),
     time: '10:00 am',
     price: 599.99,
     imageUrl: '/assets/images/angularconnect-shield.png',
@@ -89,69 +90,9 @@ const EVENTS = [
     ]
   },
   {
-    id: 2,
-    name: 'ng-nl',
-    date: '4/15/2037',
-    time: '9:00 am',
-    price: 950.00,
-    onlineUrl: 'http://ng-nl.org/',
-    location: {
-      address: 'The NG-NL',
-      city: 'Amsterdam',
-      country: 'Netherlands'
-    },
-    sessions: [
-      {
-        id: 1,
-        name: 'Testing Angular 4 Workshop',
-        presenter: 'Pascal Precht & Christoph Bergdorf',
-        duration: 4,
-        level: 'Beginner',
-        abstract: `In this 6 hour workshop you will learn not only how to test Angular 4,
-          you will also learn how to make the most of your team's efforts. Other topics
-          will be convincing your manager that testing is a good idea, and using the new
-          protractor tool for end to end testing.`,
-        voters: ['bradgreen', 'igorminar']
-      },
-      {
-        id: 2,
-        name: 'Angular 4 and Firebase',
-        presenter: 'David East',
-        duration: 3,
-        level: 'Intermediate',
-        abstract: `In this workshop, David East will show you how to use Angular with the new
-          ultra-real-time 5D Firebase back end, hosting platform, and wine recommendation engine.`,
-        voters: ['bradgreen', 'igorminar', 'johnpapa']
-      },
-      {
-        id: 3,
-        name: 'Reading the Angular 4 Source',
-        presenter: 'Patrick Stapleton',
-        duration: 2,
-        level: 'Intermediate',
-        abstract: `Angular 4's source code may be over 25 million lines of code, but it's really
-          a lot easier to read and understand then you may think. Patrick Stapleton will talk
-          about his secretes for keeping up with the changes, and navigating around the code.`,
-        voters: ['martinfowler']
-      },
-      {
-        id: 4,
-        name: 'Hail to the Lukas',
-        presenter: 'Lukas Ruebbelke',
-        duration: 1,
-        level: 'Beginner',
-        abstract: `In this session, Lukas will present the
-          secret to being awesome, and how he became the President
-          of the United States through his amazing programming skills,
-          showing how you too can be success with just attitude.`,
-        voters: ['bradgreen']
-      },
-    ]
-  },
-  {
     id: 3,
     name: 'ng-conf 2037',
-    date: '5/4/2037',
+    date: new Date('5/4/2037'),
     time: '9:00 am',
     price: 759.00,
     imageUrl: '/assets/images/ng-conf.png',
@@ -233,7 +174,7 @@ const EVENTS = [
   {
     id: 4,
     name: 'UN Angular Summit',
-    date: '6/10/2037',
+    date: new Date('6/10/2037'),
     time: '8:00 am',
     price: 800.00,
     imageUrl: '/assets/images/basic-shield.png',
@@ -282,7 +223,7 @@ const EVENTS = [
   {
     id: 5,
     name: 'ng-vegas',
-    date: '2/10/2037',
+    date: new Date('2/10/2037'),
     time: '9:00 am',
     price: 400.00,
     imageUrl: '/assets/images/ng-vegas.png',

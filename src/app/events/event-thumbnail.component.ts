@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {IEvent} from './shared';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -6,7 +7,7 @@ import {Component, Input} from '@angular/core';
   template: `
     <div [routerLink]="['/events', event.id]" class="well hoverwell thumbnail">
     <h2>{{event?.name}}</h2>
-    <div>Date: {{event?.date}}</div>
+    <div>Date: {{event?.date | date:'mediumDate'}}</div>
     <div [ngStyle]="getStartTimeStyle()" [ngSwitch]="event?.time">
       Time: {{event?.time}}
       <span *ngSwitchCase="'8:00 am'">(Early Start)</span>
@@ -37,14 +38,7 @@ import {Component, Input} from '@angular/core';
 })
 // 4 - Hiding and Showing Content with ngSwitch
 export class EventThumbnailComponent {
-  @Input() event: any;
-
-  getStartTimeClass() {
-    if (this.event && this.event.time === '8:00 am') {
-      return ['green', 'bold'];
-    }
-    return [];
-  }
+  @Input() event: IEvent;
 
   getStartTimeStyle(): any {
     if (this.event && this.event.time === '8:00 am') {
