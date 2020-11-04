@@ -18,4 +18,3 @@ export const appRoutes: Routes = [
   {path: '', redirectTo: '/events', pathMatch: 'full'},
   {path: 'user', loadChildren: './user/user.module#UserModule'}
 ];
-// 7 - Editing Data with Two-way Bindings
