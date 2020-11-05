@@ -17,6 +17,7 @@ import {
 
 import {NavBarComponent} from './nav/navbar.component';
 import {ToastrService} from './common/toastr.service';
+import {CollapsableWellComponent} from './common/collapsable-well.component';
 import {appRoutes} from './routes';
 import {RouterModule} from '@angular/router';
 import {Error404Component} from './errors/404.component';
@@ -32,7 +33,8 @@ import {AuthService} from './user/auth.service';
     CreateEventComponent,
     Error404Component,
     CreateSessionComponent,
-    SessionListComponent
+    SessionListComponent,
+    CollapsableWellComponent
   ],
   providers: [
     EventService,
