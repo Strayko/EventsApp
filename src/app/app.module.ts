@@ -1,3 +1,9 @@
+// USEFUL THINGS
+// longhand syntax
+// {provide: EventRouteActivator, useClass: EventRouteActivator},
+// use only api which we need from Logger class
+// {provide: MinimalLogger, useExisting: Logger}
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -17,12 +23,14 @@ import {
 } from './events/index';
 
 import {NavBarComponent} from './nav/navbar.component';
-import {ToastrService} from './common/toastr.service';
+import {Toastr, TOASTR_TOKEN} from './common/toastr.service';
 import {CollapsableWellComponent} from './common/collapsable-well.component';
 import {appRoutes} from './routes';
 import {RouterModule} from '@angular/router';
 import {Error404Component} from './errors/404.component';
 import {AuthService} from './user/auth.service';
+
+let toastr:Toastr = window['toastr'];
 
 @NgModule({
   declarations: [
@@ -40,7 +48,7 @@ import {AuthService} from './user/auth.service';
   ],
   providers: [
     EventService,
-    ToastrService,
+    {provide: TOASTR_TOKEN, useValue: toastr},
     EventRouteActivator,
     EventListResolver,
     AuthService,
